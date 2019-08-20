@@ -1,0 +1,82 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+{% if title %}{{ title }} - {% else %}Welcome to {% endif %}OGN Devices Database</title>
+{% endblock %}
+
+{% block navbar %}
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">OGN DDB</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('index') }}">{{ _("Home") }}</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-plane fa-fw">&nbsp;</span>{{ _("Devices") }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('add_device') }}"><span class="fa fa-plus fa-fw">&nbsp;</span>{{ _("Add Device") }}</a></li>
+                        <li><a href="{{ url_for('my_devices') }}"><span class="fa fa-user fa-fw">&nbsp;</span>{{ _("My Devices") }}</a></li>
+                        <li><a href="{{ url_for('all_devices') }}"><span class="fa fa-globe fa-fw">&nbsp;</span>{{ _("All Devices") }}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-microphone fa-fw">&nbsp;</span>{{ _("Receivers") }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('receivers') }}"><span class="fa fa-user fa-fw">&nbsp;</span>{{ _("My Receivers") }}</a></li>
+                        <li><a href="{{ url_for('receivers') }}"><span class="fa fa-globe fa-fw">&nbsp;</span>{{ _("All Receivers") }}</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('downloads') }}"><span class="fa fa-download fa-fw">&nbsp;</span>{{ _("Downloads") }}</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-lock fa-fw">&nbsp;</span>{{ _("Administration") }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('aircraft_types') }}">{{ _("Aircraft Types") }}</a></li>
+                        <li><a href="{{ url_for('claims') }}"><span class="fa fa-arrows-h fa-fw">&nbsp;</span>{{ _("Claims") }}</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_anonymous -%}
+                    <li><a href="{{ url_for('register') }}"><span class="fa fa-pencil-square-o fa-fw">&nbsp;</span>{{ _("Register") }}</a></li>
+                    <li><a href="{{ url_for('login') }}"><span class="fa fa-sign-in fa-fw">&nbsp;</span>{{ _("Login") }}</a></li>
+                {%- else -%}
+                    <li><a href="{{ url_for('logout') }}"><span class="fa fa-sign-out fa-fw">&nbsp;</span>{{ _("Logout") }}</a></li>
+                {%- endif -%}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    	<!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        {% for category, message in messages %}
+        	{% if category == 'message' %}
+				<div class="alert alert-warning" role="alert">
+        	{% else %}
+            	<div class="alert alert-{{ category }}" role="alert">
+            {% endif %}
+            	{{ message }}
+            	</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{% block app_content %}{% endblock %}
+{%- block footer %}
+<footer class="text-center"><a href="{{ url_for('about') }}"><small>&copy; 2019 The OGN Team</small></a></footer>
+{%- endblock footer %}
+</div>
+{% endblock %}

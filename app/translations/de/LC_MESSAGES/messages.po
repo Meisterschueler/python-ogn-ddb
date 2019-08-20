@@ -1,0 +1,231 @@
+# German translations for PROJECT.
+# Copyright (C) 2019 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2019-08-25 22:09+0200\n"
+"PO-Revision-Date: 2019-08-17 09:18+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+#: app/email.py:17
+msgid "OGN Devices Database - Password Reset"
+msgstr ""
+
+#: app/routes.py:13
+msgid "Home"
+msgstr ""
+
+#: app/routes.py:19
+msgid "Devices"
+msgstr "Geräte"
+
+#: app/routes.py:25
+msgid "Receivers"
+msgstr "Empfänger"
+
+#: app/routes.py:51
+msgid "Edit Receiver"
+msgstr "Empfänger bearbeiten"
+
+#: app/routes.py:57
+msgid "Aircraft Types"
+msgstr "Flugzeugtypen"
+
+#: app/routes.py:70
+msgid "Add Aircraft Type"
+msgstr "Flugzeugtyp hinzufügen"
+
+#: app/routes.py:88
+msgid "Edit Aircraft Type"
+msgstr "Flugzeugtyp bearbeiten"
+
+#: app/routes.py:93
+msgid "Downloads"
+msgstr ""
+
+#: app/routes.py:98
+msgid "About"
+msgstr "Über"
+
+#: app/routes.py:104
+msgid "User"
+msgstr "Benutzer"
+
+#: app/routes.py:110
+msgid "Claims"
+msgstr ""
+
+#: app/routes.py:124
+msgid "Congratulations! You are now a registered user."
+msgstr ""
+
+#: app/routes.py:127
+msgid "Register"
+msgstr "Registrieren"
+
+#: app/routes.py:139
+msgid "Invalid email address or password"
+msgstr "Ungültige Emailaddresse oder Passwort"
+
+#: app/routes.py:149
+msgid "Login"
+msgstr "Einloggen"
+
+#: app/routes.py:172
+msgid "Check your email for the instructions to reset your password"
+msgstr ""
+
+#: app/routes.py:175
+msgid "Request Password Reset"
+msgstr ""
+
+#: app/routes.py:191
+msgid "Your password has been reset."
+msgstr "Dein Passwort wurde zurückgesetzt."
+
+#: app/routes.py:193
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
+
+#: app/routes.py:205
+msgid "You already own this device"
+msgstr "Du verwaltest dieses Gerät bereits"
+
+#: app/routes.py:208
+msgid "This device is used by another user"
+msgstr "Dieses Gerät wird bereits von einem anderen Nutzer verwaltet."
+
+#: app/routes.py:215
+msgid "Add Device"
+msgstr "Gerät hinzufügen"
+
+#: app/routes.py:244
+msgid "Edit Device"
+msgstr "Gerät bearbeiten"
+
+#: app/routes.py:291
+msgid "Claim Device Ownership"
+msgstr ""
+
+#~ msgid "File not found"
+#~ msgstr "Seite nicht gefunden"
+
+#~ msgid "An unexpected error occured"
+#~ msgstr "Ein unerwarteter Fehler ist aufgetreten"
+
+#~ msgid "The administrator has been informed. Sorry for the inconvenience!"
+#~ msgstr "Der Administrator wurde informiert. Entschuldigung für die Umstände"
+
+#~ msgid "Update"
+#~ msgstr ""
+
+#~ msgid "Delete"
+#~ msgstr "Löschen"
+
+#~ msgid "Logout"
+#~ msgstr "Ausloggen"
+
+#~ msgid "Regist."
+#~ msgstr ""
+
+#~ msgid "Tracking"
+#~ msgstr ""
+
+#~ msgid "Ident."
+#~ msgstr ""
+
+#~ msgid "Dongle"
+#~ msgstr ""
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#~ msgid "Password"
+#~ msgstr "Passwort"
+
+#~ msgid "Remember Me"
+#~ msgstr ""
+
+#~ msgid "Sign In"
+#~ msgstr "Einloggen"
+
+#~ msgid "Repeat Password"
+#~ msgstr "Passwort wiederholen"
+
+#~ msgid "Please choose a different email address."
+#~ msgstr "Bitte wähle eine andere Email Addresse"
+
+#~ msgid "Device ID"
+#~ msgstr ""
+
+#~ msgid "I certify to be the owner of this device"
+#~ msgstr "Ich bestätige, dass ich der Besitzer dieses Geräts bin"
+
+#~ msgid "Device type"
+#~ msgstr "Gerätetyp"
+
+#~ msgid "Aircraft type"
+#~ msgstr "Flugzeugtyp"
+
+#~ msgid "Registration"
+#~ msgstr "Registrierung"
+
+#~ msgid "CN"
+#~ msgstr ""
+
+#~ msgid "I want this device to be tracked"
+#~ msgstr ""
+
+#~ msgid "I want this device to be identified"
+#~ msgstr ""
+
+#~ msgid "Save changes"
+#~ msgstr "Änderungen speichern"
+
+#~ msgid "Name"
+#~ msgstr "Name"
+
+#~ msgid "Category"
+#~ msgstr "Kategorie"
+
+#~ msgid "Please choose a different name."
+#~ msgstr "Bitte wähle einen anderen Namen."
+
+#~ msgid "Message"
+#~ msgstr "Nachricht"
+
+#~ msgid "Send my email address"
+#~ msgstr ""
+
+#~ msgid "Submit claim"
+#~ msgstr ""
+
+#~ msgid "Description"
+#~ msgstr "Beschreibung"
+
+#~ msgid "Antenna"
+#~ msgstr "Antenne"
+
+#~ msgid "Preamplifier"
+#~ msgstr "Vorverstärker"
+
+#~ msgid "Filter"
+#~ msgstr "Filter"
+
+#~ msgid "SDR Dongle"
+#~ msgstr "SDR Dongle"
+
+#~ msgid "Save Changes"
+#~ msgstr "Änderungen speichern"
+

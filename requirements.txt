@@ -1,0 +1,5 @@
+# Install python-ogn-ddb
+-e .
+
+# Install dependencies for heroku
+-e .[heroku]
