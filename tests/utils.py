@@ -4,8 +4,8 @@ from app.models import Antenna, AircraftType, AircraftCategory, User, Device, De
 
 
 def build_db_from_ddb():
-    user = User(email="kammermark@gmx.de")
-    user.set_password("albatross")
+    user = User(email="user1@email.com")
+    user.set_password("topsecret")
     db.session.add(user)
 
     with open("ddb.txt") as csvfile:
@@ -26,7 +26,7 @@ def build_db_from_ddb():
             if not aircraft_type:
                 aircraft_type = AircraftType(name=aircraft_type_name, category=aircraft_category)
 
-            device = Device(device_type=device_type, aircraft_type=aircraft_type, address=address, registration=registration, cn=cn, show_track=show_track, show_identity=show_identity, user=user)
+            Device(device_type=device_type, aircraft_type=aircraft_type, address=address, registration=registration, cn=cn, show_track=show_track, show_identity=show_identity, user=user)
 
             if i == 1000:
                 break
@@ -41,14 +41,14 @@ def build_db():
 
     db.session.add_all([a1, a2, a3])
 
-    u1 = User(email="kammermark@gmx.de")
-    u1.set_password("albatross")
+    u1 = User(email="user1@email.de")
+    u1.set_password("topsecret")
 
     d11 = Device(address="DD1234", device_type=DeviceType.FLARM, aircraft_type=a1, registration="D-1234", cn="34", user=u1)
     d12 = Device(address="DD4711", device_type=DeviceType.FLARM, aircraft_type=a2, registration="D-4711", cn="11", user=u1)
 
-    u2 = User(email="a@b.cd")
-    u2.set_password("aaaaaa")
+    u2 = User(email="user2@email.de")
+    u2.set_password("evenmoresecret")
 
     d21 = Device(address="ABCDEF", device_type=DeviceType.OGN, aircraft_type=a3, registration="D-OTTO", cn="TO", user=u2)
 
