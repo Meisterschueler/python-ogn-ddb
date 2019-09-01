@@ -44,15 +44,15 @@ def build_db():
     u1 = User(email="user1@email.de")
     u1.set_password("topsecret")
 
-    d11 = Device(address="DD1234", device_type=DeviceType.FLARM, aircraft_type=a1, registration="D-1234", cn="34", user=u1)
-    d12 = Device(address="DD4711", device_type=DeviceType.FLARM, aircraft_type=a2, registration="D-4711", cn="11", user=u1)
+    Device(address="DD1234", device_type=DeviceType.FLARM, aircraft_type=a1, registration="D-1234", cn="34", user=u1)
+    Device(address="DD4711", device_type=DeviceType.FLARM, aircraft_type=a2, registration="D-4711", cn="11", user=u1)
 
     u2 = User(email="user2@email.de")
     u2.set_password("evenmoresecret")
 
-    d21 = Device(address="ABCDEF", device_type=DeviceType.OGN, aircraft_type=a3, registration="D-OTTO", cn="TO", user=u2)
+    Device(address="ABCDEF", device_type=DeviceType.OGN, aircraft_type=a3, registration="D-OTTO", cn="TO", user=u2)
 
-    r1 = Receiver(name="Koenigsdf", antenna=Antenna.CHINESE_9DB_JPOLE, preamplifier=Preamplifier.TERRA_AB010, rx_filter=RxFilter.CAVITY, sdr_dongle=SdrDongle.RTLSDR_COM, user=u1)
+    Receiver(name="Koenigsdf", antenna=Antenna.CHINESE_9DB_JPOLE, preamplifier=Preamplifier.TERRA_AB010, rx_filter=RxFilter.CAVITY, sdr_dongle=SdrDongle.RTLSDR_COM, user=u1)
 
     db.session.add(u1)
     db.session.add(u2)

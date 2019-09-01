@@ -10,13 +10,14 @@ class TestDB(unittest.TestCase):
         db.create_all()
 
     def tearDown(self):
-        #db.session.remove()
-        #db.drop_all()
+        # db.session.remove()
+        # db.drop_all()
         pass
 
     def test_wtf(self):
         build_db_from_ddb()
         devices = db.session.query(Device).all()
         print(devices)
+
 
 unittest.main()

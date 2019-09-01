@@ -15,9 +15,10 @@ class TestModels(unittest.TestCase):
         user = User()
         device = Device()
         user.followed_devices.append(device)
-        
+
         self.assertTrue(user in device.following_users)
         self.assertTrue(device in user.followed_devices)
-        
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     unittest.main()
