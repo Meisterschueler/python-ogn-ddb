@@ -1,6 +1,10 @@
+import os
 import csv
 from app import db
 from app.models import Antenna, AircraftType, AircraftCategory, User, Device, DeviceType, Preamplifier, Receiver, RxFilter, SdrDongle
+
+
+mypath = os.path.dirname(os.path.realpath(__file__))
 
 
 def build_db_from_ddb():
@@ -8,7 +12,7 @@ def build_db_from_ddb():
     user.set_password("topsecret")
     db.session.add(user)
 
-    with open("ddb.txt") as csvfile:
+    with open(os.path.join(mypath, "ddb.txt")) as csvfile:
         csvreader = csv.DictReader(csvfile, delimiter=",", quotechar="'")
         i = 0
         for row in csvreader:
