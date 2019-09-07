@@ -35,6 +35,7 @@ setup(
         'Flask==1.1.1',
         'Flask-SQLAlchemy==2.4.0',
         'Flask-Migrate==2.5.2',
+        'Flask-Admin==1.5.3',
         'Flask-Login==0.4.1',
         'Flask-Bootstrap==3.3.7.1',
         'Flask-Mail==0.9.1',

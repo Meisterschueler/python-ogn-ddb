@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SelectField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError, Email, EqualTo, Regexp
 from flask_babel import lazy_gettext as _l
-from app.models import Antenna, User, AircraftType, AircraftCategory, DeviceType, Preamplifier, RxFilter, SdrDongle
+from app.models import Antenna, User, DeviceType, Preamplifier, RxFilter, SdrDongle
 
 
 class LoginForm(FlaskForm):
@@ -38,23 +38,6 @@ class EditDeviceForm(FlaskForm):
     cn = StringField(_l("CN"), validators=[Length(max=3)])
     show_track = BooleanField(_l("I want this device to be tracked"))
     show_identity = BooleanField(_l("I want this device to be identified"))
-    submit = SubmitField(_l("Save changes"))
-
-
-class AddAircraftTypeForm(FlaskForm):
-    name = StringField(_l("Name"), validators=[DataRequired()])
-    category = SelectField(_l("Category"), choices=AircraftCategory.choices(), coerce=AircraftCategory.coerce)
-    submit = SubmitField(_l("Save changes"))
-
-    def validate_name(self, name):
-        aircraft_type = AircraftType.query.filter_by(name=name.data).first()
-        if aircraft_type is not None:
-            raise ValidationError(_l("Please choose a different name."))
-
-
-class EditAircraftTypeForm(FlaskForm):
-    name = StringField(_l("Name"), validators=[DataRequired()])
-    category = SelectField(_l("Category"), choices=AircraftCategory.choices(), coerce=AircraftCategory.coerce)
     submit = SubmitField(_l("Save changes"))
 
 

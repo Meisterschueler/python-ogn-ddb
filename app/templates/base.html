@@ -36,13 +36,6 @@
                     </ul>
                 </li>
                 <li><a href="{{ url_for('downloads') }}"><span class="fa fa-download fa-fw">&nbsp;</span>{{ _("Downloads") }}</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-lock fa-fw">&nbsp;</span>{{ _("Administration") }}<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{{ url_for('aircraft_types') }}">{{ _("Aircraft Types") }}</a></li>
-                        <li><a href="{{ url_for('claims') }}"><span class="fa fa-arrows-h fa-fw">&nbsp;</span>{{ _("Claims") }}</a></li>
-                    </ul>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_anonymous -%}

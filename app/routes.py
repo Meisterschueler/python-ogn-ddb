@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import RegisterForm, LoginForm, ResetPasswordForm, ResetPasswordRequestForm, AddDeviceForm, EditDeviceForm, ClaimDeviceForm, AddAircraftTypeForm, EditAircraftTypeForm, EditReceiverForm
+from app.forms import RegisterForm, LoginForm, ResetPasswordForm, ResetPasswordRequestForm, AddDeviceForm, EditDeviceForm, ClaimDeviceForm, EditReceiverForm
 from app.models import AircraftType, User, Device, Receiver
 
 
@@ -62,37 +62,6 @@ def edit_receiver():
 def aircraft_types():
     aircraft_types = AircraftType.query.order_by(AircraftType.category, AircraftType.name).all()
     return render_template("aircraft_types.html", title=_("Aircraft Types"), aircraft_types=aircraft_types)
-
-
-@app.route("/add_aircraft_type", methods=["GET", "POST"])
-def add_aircraft_type():
-
-    form = AddAircraftTypeForm()
-    if form.validate_on_submit():
-        aircraft_type = AircraftType(name=form.name.data, category=form.category.data)
-        db.session.add(aircraft_type)
-        db.session.commit()
-        return redirect(url_for("aircraft_types"))
-
-    return render_template("form_generator.html", title=_("Add Aircraft Type"), form=form)
-
-
-@app.route("/edit_aircraft_type", methods=["GET", "POST"])
-def edit_aircraft_type():
-    aircraft_type_id = request.args.get("aircraft_type_id")
-    aircraft_type = AircraftType.query.filter_by(id=aircraft_type_id).first_or_404()
-
-    form = EditAircraftTypeForm()
-    if form.validate_on_submit():
-        aircraft_type.name = form.name.data
-        aircraft_type.category = form.category.data
-        db.session.commit()
-        return redirect(url_for("aircraft_types"))
-    elif request.method == "GET":
-        form.name.data = aircraft_type.name
-        form.category.data = aircraft_type.category
-
-    return render_template("form_generator.html", title=_("Edit Aircraft Type"), form=form)
 
 
 @app.route("/downloads")
