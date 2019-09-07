@@ -7,22 +7,25 @@ class DeviceClaim(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    request_message = db.Column(db.String(255), nullable=False)
-    request_timestamp = db.Column(db.DateTime, default=datetime.utcnow())
+    claim_message = db.Column(db.String(255), nullable=False)
+    claim_timestamp = db.Column(db.DateTime, default=datetime.utcnow())
 
-    respond_message = db.Column(db.String(255))
-    respond_timestamp = db.Column(db.DateTime)
+    owner_message = db.Column(db.String(255))
+    owner_timestamp = db.Column(db.DateTime)
+
+    admin_message = db.Column(db.String(255))
+    admin_timestamp = db.Column(db.DateTime)
 
     is_approved = db.Column(db.Boolean)
 
-    # device_id = db.Column(db.Integer, db.ForeignKey('devices.id'))
-    # device = db.relationship('Device', backref=db.backref('claims', order_by=request_timestamp))
+    device_id = db.Column(db.Integer, db.ForeignKey("devices.id"))
+    device = db.relationship("Device", backref=db.backref("claims", order_by=claim_timestamp))
 
-    # owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # owner = db.relationship('User', primaryjoin=[owner_id], backref=db.backref('claims', order_by=request_timestamp))
+    claimer_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    claimer = db.relationship("User", foreign_keys=[claimer_id], backref=db.backref("claims_as_claimer", order_by=claim_timestamp))
 
-    # requestor_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # requestor = db.relationship('User', primaryjoin=[requestor_id], backref=db.backref('requested_claims', order_by=request_timestamp))
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    owner = db.relationship("User", foreign_keys=[owner_id], backref=db.backref("claims_as_owner", order_by=claim_timestamp))
 
-    # responder_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    # responder = db.relationship('User', primaryjoin=[responder_id], backref=db.backref('responded_claims', order_by=request_timestamp))
+    admin_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    admin = db.relationship("User", foreign_keys=[admin_id], backref=db.backref("claims_ad_admin", order_by=claim_timestamp))
