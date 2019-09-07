@@ -4,7 +4,7 @@ from app import db
 from app.models import Antenna, AircraftType, AircraftCategory, User, Device, DeviceType, Preamplifier, Receiver, RxFilter, SdrDongle
 
 
-mypath = os.path.dirname(os.path.realpath(__file__))
+basepath = os.path.dirname(os.path.realpath(__file__))
 
 
 def build_db_from_ddb():
@@ -12,7 +12,7 @@ def build_db_from_ddb():
     user.set_password("topsecret")
     db.session.add(user)
 
-    with open(os.path.join(mypath, "ddb.txt")) as csvfile:
+    with open(os.path.join(basepath, "ressources/ddb.txt")) as csvfile:
         csvreader = csv.DictReader(csvfile, delimiter=",", quotechar="'")
         i = 0
         for row in csvreader:
@@ -57,13 +57,10 @@ def build_db():
     Device(address="ABCDEF", device_type=DeviceType.OGN, aircraft_type=a3, registration="D-OTTO", cn="TO", user=u2)
 
     Receiver(name="Koenigsdf", antenna=Antenna.CHINESE_9DB_JPOLE, preamplifier=Preamplifier.TERRA_AB010, rx_filter=RxFilter.CAVITY, sdr_dongle=SdrDongle.RTLSDR_COM, user=u1)
+    Receiver(name="Wank", antenna=Antenna.CHINESE_9DB_JPOLE, preamplifier=Preamplifier.NONE, rx_filter=RxFilter.CBP840, sdr_dongle=SdrDongle.RTLSDR_COM, user=u1)
+    Receiver(name="Arber", antenna=Antenna.WIMO_SPERRTOPF, preamplifier=Preamplifier.NONE, rx_filter=RxFilter.CAVITY, sdr_dongle=SdrDongle.RTLSDR_COM, user=u1)
+    Receiver(name="Marmolada", antenna=Antenna.CHINESE_9DB_JPOLE, preamplifier=Preamplifier.SELF_BUILT_WITH_FILTER, rx_filter=RxFilter.NONE, sdr_dongle=SdrDongle.RTLSDR_COM, user=u1)
 
     db.session.add(u1)
     db.session.add(u2)
     db.session.commit()
-
-
-if __name__ == "__main__":
-    db.drop_all()
-    db.create_all()
-    build_db_from_ddb()
