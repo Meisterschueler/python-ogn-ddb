@@ -32,3 +32,22 @@ def register(app):
         """Compile all languages."""
         if os.system("pybabel compile -d app/translations"):
             raise RuntimeError("compile command failed")
+
+    @app.cli.group()
+    def fakedata():
+        """Insert fake data for debugging and testing purposes."""
+        pass
+
+    @fakedata.command()
+    def data():
+        """Fill db with some fake data."""
+        from app.fake import build_db
+
+        build_db()
+
+    @fakedata.command()
+    def ddb():
+        """Fill db with data from ddb."""
+        from app.fake import build_db_from_ddb
+
+        build_db_from_ddb()
