@@ -19,30 +19,30 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('index') }}">{{ _("Home") }}</a></li>
+                <li><a href="{{ url_for('main.index') }}">{{ _("Home") }}</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-plane fa-fw">&nbsp;</span>{{ _("Devices") }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url_for('add_device') }}"><span class="fa fa-plus fa-fw">&nbsp;</span>{{ _("Add Device") }}</a></li>
-                        <li><a href="{{ url_for('my_devices') }}"><span class="fa fa-user fa-fw">&nbsp;</span>{{ _("My Devices") }}</a></li>
-                        <li><a href="{{ url_for('all_devices') }}"><span class="fa fa-globe fa-fw">&nbsp;</span>{{ _("All Devices") }}</a></li>
+                        <li><a href="{{ url_for('main.add_device') }}"><span class="fa fa-plus fa-fw">&nbsp;</span>{{ _("Add Device") }}</a></li>
+                        <li><a href="{{ url_for('main.my_devices') }}"><span class="fa fa-user fa-fw">&nbsp;</span>{{ _("My Devices") }}</a></li>
+                        <li><a href="{{ url_for('main.all_devices') }}"><span class="fa fa-globe fa-fw">&nbsp;</span>{{ _("All Devices") }}</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-microphone fa-fw">&nbsp;</span>{{ _("Receivers") }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url_for('receivers') }}"><span class="fa fa-user fa-fw">&nbsp;</span>{{ _("My Receivers") }}</a></li>
-                        <li><a href="{{ url_for('receivers') }}"><span class="fa fa-globe fa-fw">&nbsp;</span>{{ _("All Receivers") }}</a></li>
+                        <li><a href="{{ url_for('main.my_receivers') }}"><span class="fa fa-user fa-fw">&nbsp;</span>{{ _("My Receivers") }}</a></li>
+                        <li><a href="{{ url_for('main.all_receivers') }}"><span class="fa fa-globe fa-fw">&nbsp;</span>{{ _("All Receivers") }}</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ url_for('downloads') }}"><span class="fa fa-download fa-fw">&nbsp;</span>{{ _("Downloads") }}</a></li>
+                <li><a href="{{ url_for('main.downloads') }}"><span class="fa fa-download fa-fw">&nbsp;</span>{{ _("Downloads") }}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.is_anonymous -%}
-                    <li><a href="{{ url_for('register') }}"><span class="fa fa-pencil-square-o fa-fw">&nbsp;</span>{{ _("Register") }}</a></li>
-                    <li><a href="{{ url_for('login') }}"><span class="fa fa-sign-in fa-fw">&nbsp;</span>{{ _("Login") }}</a></li>
+                    <li><a href="{{ url_for('main.register') }}"><span class="fa fa-pencil-square-o fa-fw">&nbsp;</span>{{ _("Register") }}</a></li>
+                    <li><a href="{{ url_for('main.login') }}"><span class="fa fa-sign-in fa-fw">&nbsp;</span>{{ _("Login") }}</a></li>
                 {%- else -%}
-                    <li><a href="{{ url_for('logout') }}"><span class="fa fa-sign-out fa-fw">&nbsp;</span>{{ _("Logout") }}</a></li>
+                    <li><a href="{{ url_for('main.logout') }}"><span class="fa fa-sign-out fa-fw">&nbsp;</span>{{ _("Logout") }}</a></li>
                 {%- endif -%}
             </ul>
         </div>
@@ -69,7 +69,7 @@
 
 {% block app_content %}{% endblock %}
 {%- block footer %}
-<footer class="text-center"><a href="{{ url_for('about') }}"><small>&copy; 2019 The OGN Team</small></a></footer>
+<footer class="text-center"><a href="{{ url_for('main.about') }}"><small>&copy; 2019 The OGN Team</small></a></footer>
 {%- endblock footer %}
 </div>
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block app_content %}
     <h1>Receivers</h1>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>{{ _("Name") }}</th>
@@ -22,10 +22,10 @@
                 <td>{{ receiver.description }}</td>
                 <td>{{ receiver.antenna }}</td>
                 <td>{{ receiver.preamplifier }}</td>
-                <td>{{ receiver.filter }}</td>
+                <td>{{ receiver.rx_filter }}</td>
                 <td>{{ receiver.sdr_dongle }}</td>
-                <td><a href="{{ url_for('edit_receiver', receiver_id=receiver.id) }}" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                <td><a href="{{ url_for('edit_receiver', receiver_id=receiver.id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+                <td><a href="{{ url_for('main.edit_receiver', receiver_id=receiver.id) }}" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                <td><a href="{{ url_for('main.edit_receiver', receiver_id=receiver.id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
             </tr>
         {% endfor %}
         </tbody>

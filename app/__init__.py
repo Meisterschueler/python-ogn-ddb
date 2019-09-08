@@ -1,5 +1,5 @@
 # flake8: noqa
-from flask import Flask
+from flask import Flask, current_app
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_admin import Admin
@@ -12,17 +12,18 @@ from config import config
 db = SQLAlchemy()
 admin = Admin(name="ddb admin", template_mode="bootstrap3")
 login = LoginManager()
-login.login_view = "login"
+login.login_view = "main.login"
 login.login_message_category = "danger"
 login.localize_callback = _
 bootstrap = Bootstrap()
 mail = Mail()
 babel = Babel()
 
+
 def create_app(config_name="default"):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
-    migrate = Migrate(app, db)
+    config[config_name].init_app(app)
 
     db.init_app(app)
     admin.init_app(app)
@@ -36,6 +37,12 @@ def create_app(config_name="default"):
 
     app.register_blueprint(blueprint_main)
 
+    from flask_admin.contrib.sqla import ModelView
+    from app.models import AircraftType, DeviceClaim
+
+    admin.add_view(ModelView(AircraftType, db.session))
+    admin.add_view(ModelView(DeviceClaim, db.session))
+
     return app
 
 
@@ -43,5 +50,4 @@ def create_app(config_name="default"):
 def get_locale():
     from flask import request
 
-    return request.accept_languages.best_match(app.config["LANGUAGES"])
-
+    return request.accept_languages.best_match(current_app.config["LANGUAGES"])
