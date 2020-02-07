@@ -39,7 +39,7 @@ setup(
         'Flask-Login==0.4.1',
         'Flask-Bootstrap==3.3.7.1',
         'Flask-Mail==0.9.1',
-        'Flask-Babel==0.12.2',
+        'Flask-Babel==1.0.0',
         'Flask-WTF==0.14.2',
         'jwt==0.6.1',
     ],
