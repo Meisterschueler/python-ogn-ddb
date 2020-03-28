@@ -23,4 +23,4 @@ class Receiver(db.Model):
     following_users = db.relationship("User", secondary="association_table_users_receivers")
 
     def __repr__(self):
-        return "Receiver(antenna={self.antenna}, preamplifier={self.preamplifier}, filter={self.filter}, sdr_dongle={self.sdr_dongle})".format(self=self)
+        return "Receiver(antenna={self.antenna}, preamplifier={self.preamplifier}, rx_filter={self.rx_filter}, sdr_dongle={self.sdr_dongle})".format(self=self)
