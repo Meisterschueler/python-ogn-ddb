@@ -204,6 +204,8 @@ def edit_device():
     device = Device.query.filter_by(id=device_id).filter_by(user_id=current_user.id).first_or_404()
 
     form = EditDeviceForm()
+    form.aircraft_type_id.choices = AircraftType.choices()
+
     if form.validate_on_submit():
         device.device_type = form.device_type.data
         device.aircraft_type_id = form.aircraft_type_id.data
@@ -216,7 +218,6 @@ def edit_device():
     elif request.method == "GET":
         form.address.data = device.address
         form.device_type.data = device.device_type
-        form.aircraft_type_id.choices = AircraftType.choices()
         form.aircraft_type_id.data = device.aircraft_type_id
         form.registration.data = device.registration
         form.cn.data = device.cn

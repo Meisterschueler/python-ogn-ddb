@@ -33,7 +33,7 @@ class AddDeviceForm(FlaskForm):
 class EditDeviceForm(FlaskForm):
     address = StringField(_l("Device ID"), render_kw={"readonly": True})
     device_type = SelectField(_l("Device type"), choices=DeviceType.choices(), coerce=DeviceType.coerce)
-    aircraft_type_id = SelectField(_l("Aircraft type"))
+    aircraft_type_id = SelectField(_l("Aircraft type"), choices=[], coerce=int)
     registration = StringField(_l("Registration"), validators=[Length(max=7)])
     cn = StringField(_l("CN"), validators=[Length(max=3)])
     show_track = BooleanField(_l("I want this device to be tracked"))
