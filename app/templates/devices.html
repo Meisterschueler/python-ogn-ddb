@@ -54,7 +54,7 @@
                 {%- endif %}
                 {% if device in current_user.devices -%}
                 	<td><a href="{{ url_for('main.edit_device', device_id=device.id) }}" class="btn btn-info"><span class="fa fa-wrench fa-fw"></span></a></td>
-                	<td><a href="{{ url_for('main.delete_device', device_id=device.id) }}" class="btn btn-danger"><span class="fa fa-trash-o fa-fw"></span></a></td>
+                	<td><a href="{{ url_for('main.delete_device', device_id=device.id) }}" class="btn btn-danger"><span class="fa fa-trash-alt fa-fw"></span></a></td>
                 {% else %}
                 	<td></td>
                 	<td></td>
