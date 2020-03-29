@@ -202,7 +202,6 @@ def add_device():
                     flash(_("This device is used by another user, but you already opened a claim"))
                     return redirect(url_for("main.my_devices"))
 
-
     return render_template("form_generator.html", title=_("Add Device"), form=form)
 
 

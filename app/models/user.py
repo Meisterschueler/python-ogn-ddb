@@ -31,10 +31,10 @@ class User(UserMixin, db.Model):
     @staticmethod
     def verify_password_token(token):
         try:
-            id = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])["reset_password"]
+            payload = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
+            return User.query.get(payload['reset_password']) if time() <= payload['exp'] else None
         except Exception:
-            return
-        return User.query.get(id)
+            return None
 
 
 @login.user_loader

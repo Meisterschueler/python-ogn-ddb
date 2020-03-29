@@ -41,7 +41,7 @@ setup(
         'Flask-Mail==0.9.1',
         'Flask-Babel==1.0.0',
         'Flask-WTF==0.14.3',
-        'jwt==0.6.1',
+        'PyJWT==1.7.1',
     ],
     test_require=[
         'pytest==5.0.1',
