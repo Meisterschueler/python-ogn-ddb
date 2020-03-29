@@ -1,37 +1,37 @@
-{{ _("Dear friend of OGN") }},
+Dear friend of OGN,
 
-{{ _("you are receiving this mail because someone wants to use a Device ID which 
-is registered to you. The Device ID is:") }} {{ device_claim.device.address }}
+you are receiving this mail because someone wants to use a Device ID which 
+is registered to you. The Device ID is: {{ device_claim.device.address }}
 
-{{ _("This is the current entry in the devices database:") }}
+This is the current entry in the devices database:
 {{ device_claim.device.aircraft_type.name }}
 {{ device_claim.device.registration }}
 {{ device_claim.device.cn }}
 
-{{ _("The claimer added following message:") }}
+The claimer added following message:
 {{ device_claim.message }}
 
-{{ _("Folgende Gründe können für diesen Anspruch auf die Device ID vorliegen:
-1. Das Gerät mit der Device ID hat den Besitzer gewechselt. Dieser Wechsel wurde
-   jedoch nicht in der DDB vollzogen. Mit anderen Worten: dein Eintrag stammt von
-   einem Gerät, dass du jedoch nicht mehr besitzt.
-   In diesem Fall stimme bitte dem Anspruch zu, damit der neue Besitzer das Gerät 
-   registrieren kann.
-2. Du hast einen Fehler beim Eintrag in die DDB gemacht. Das kann jedem passieren.
-   Auch in diesem Fall solltest du bitte dem Anspruch zustimmen, damit der
-   Antragsteller die Device ID benutzen kann.
-3. Du bist dir 100% sicher, dass die Device ID von deinem Gerät ist. D.h. entweder
-   hat sich der Antragsteller geirrt, oder es wurde fälschlicherweise eine
-   Device ID mehreren Geräten zugewiesen.
-   In diesem Fall lehne den Anspruch mit einer kurzen Beschreibung und ggf. der
-   Seriennummer des Gerätes ab.") }}
+{% if device_claim.submit_email == True -%}
+{{ _("The claimer provided his email address so you can directly contact him via email:") }} mailto:{{ device_claim.requester.email }}
+{%- endif %}
 
-{% if device_claim.submit_email == True %}{{ _("You can directly contact the claimer
-via email:") }} mailto:{{ device_claim.requester.email }}{% endif %}
+The reason for the claim could be one of the following:
 
-{{ _("Die Zustimmung oder Ablehnung zu dem Anspruch kannst du auf folgender Seite machen:") }}
-{{ url_for('claims', _external=True) }}
+1. The owner of the device changed. But the entry in the devices database did not change.
+In this case: click the link where you AGREE the claim.
 
-{{ _("WICHTIG: wenn du auf diese Mail NICHT reagierst, dann wird dies nach 30 Tagen
-als ZUSTIMMUNG gewertet, d.h. nach Ablauf der 30 Tagen wird die Device ID automatisch
-dem Antragsteller übertragen.") }}
+2. You made a mistake in the entry and wrote a wrong device id.
+In this case: click the link where you AGREE the claim.
+
+3. You are sure that you still own the device and the device id from the entry is correct.
+This can be the case if the claimer is wrong or the device id is by mistake assigned to multiple devices.
+In this case: click the link where you REJECT the claim.
+
+To AGREE the claim, please click following link:
+
+To REJECT the claim, please click following link:
+
+
+
+IMPORTANT NOTE: if you ignore this mail, after 30 days it will be assumed as confirmation
+and the device id will automatically tranferred to the claimer.

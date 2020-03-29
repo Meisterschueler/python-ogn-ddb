@@ -4,7 +4,7 @@ from flask_babel import _
 from werkzeug.urls import url_parse
 from app import db
 from app.main.forms import RegisterForm, LoginForm, ResetPasswordForm, ResetPasswordRequestForm, AddDeviceForm, EditDeviceForm, ClaimDeviceForm, EditReceiverForm
-from app.models import AircraftType, User, Device, Receiver
+from app.models import AircraftType, Device, DeviceClaim, User, Receiver
 from app.main import bp
 
 
@@ -181,18 +181,27 @@ def add_device():
     form = AddDeviceForm()
     if form.validate_on_submit():
         address = form.address.data.upper()
-        device = Device.query.filter_by(address=address).first()
-        if device is not None:
+        device = Device.query.filter_by(address=address).one_or_none()
+        if device is None:
+            device = Device(address=address, user=current_user)
+            db.session.commit()
+            return redirect(url_for("main.edit_device", device_id=device.id))
+
+        else:
             if device.user == current_user:
                 flash(_("You already own this device"), category="warning")
                 return redirect(url_for("main.my_devices"))
             else:
-                flash(_("This device is used by another user"), category="danger")
-                return redirect(url_for("main.claim_device", device_id=device.id))
-        else:
-            device = Device(address=address, user=current_user)
-            db.session.commit()
-            return redirect(url_for("main.edit_device", device_id=device.id))
+                device_claim = DeviceClaim.query.\
+                    filter_by(device_id=device.id).\
+                    filter_by(claimer=current_user).one_or_none()
+                if device_claim is None:
+                    flash(_("This device is used by another user"), category="danger")
+                    return redirect(url_for("main.claim_device", device_id=device.id))
+                else:
+                    flash(_("This device is used by another user, but you already opened a claim"))
+                    return redirect(url_for("main.my_devices"))
+
 
     return render_template("form_generator.html", title=_("Add Device"), form=form)
 
@@ -268,7 +277,31 @@ def claim_device():
 
     form = ClaimDeviceForm()
     if form.validate_on_submit():
-        pass
+        device_claim = DeviceClaim()
+        device_claim.claim_message = form.message.data
+        device_claim.device = device
+        device_claim.owner = device.user
+        device_claim.claimer = current_user
+        db.session.commit()
+
+        from app.email import send_device_claim_email
+        send_device_claim_email(device_claim)
+
+        flash(_("Claim successfully commited"), category="success")
+
+        return redirect(url_for("main.my_devices"))
 
     form.address.data = device.address
     return render_template("form_generator.html", title=_("Claim Device Ownership"), form=form)
+
+
+@bp.route("/claim_confirmed/<token>", methods=["GET", "POST"])
+@login_required
+def claim_confirmed(token):
+    pass
+
+
+@bp.route("/claim_rejected/<token>", methods=["GET", "POST"])
+@login_required
+def claim_rejected(token):
+    pass
