@@ -12,6 +12,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String)
     password_hash = db.Column(db.String)
+    is_activated = db.Column(db.Boolean, nullable=False, default=False)
 
     followed_devices = db.relationship("Device", secondary="association_table_users_devices", back_populates="following_users")
     followed_receivers = db.relationship("Receiver", secondary="association_table_users_receivers")
@@ -21,6 +22,9 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def __str__(self):
+        return self.email
 
     def __repr__(self):
         return "User(email={self.email})".format(self=self)

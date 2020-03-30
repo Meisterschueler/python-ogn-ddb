@@ -1,0 +1,42 @@
+<p>Dear friend of OGN,</p>
+<p>you are receiving this mail because someone claims a device ID where you are the current owner.</p>
+
+<table>
+<tbody>
+<tr>
+<td>device ID</td>
+<td>{{ device_claim.device.address }}</td>
+</tr>
+<tr>
+<td>aircraft</td>
+<td>{{ device_claim.device.aircraft_type.name }}</td>
+</tr>
+<tr>
+<td>registration</td>
+<td>{{ device_claim.device.registration }}</td>
+</tr>
+<tr>
+<td>cn</td>
+<td>{{ device_claim.device.cn }}</td>
+</tr>
+</tbody>
+</table>
+
+<p>The claimer added following message: "{{ device_claim.claim_message }}"</p>
+
+{% if device_claim.provide_email == True -%}</p>
+<p>{{ _("The claimer provided his email address so you can directly contact him via email:") }} mailto:{{ device_claim.claimer.email }}</p>
+<p>{%- endif %}</p>
+
+<p>The reason for the claim could be one of the following:</p>
+<ol>
+<li>The owner of the device changed. But the entry in the devices database did not change. In this case: click the link where you ACCEPT the claim.</li>
+<li>You made a mistake in the entry and wrote a wrong device id. In this case: click the link where you ACCEPT the claim.</li>
+<li>You are sure that you still own the device and the device id from the entry is correct. This can be the case if the claimer is wrong or the device id is by mistake assigned to multiple devices. In this case: click the link where you REJECT the claim.</li>
+</ol>
+
+<p>To <strong>ACCEPT</strong> the claim, please click following link:</p>
+
+<p>To <strong>REJECT</strong> the claim, please click following link:</p>
+
+<p><strong>IMPORTANT NOTE: </strong>if you ignore this mail, after 30 days it will be assumed as confirmation and the device id will automatically tranferred to the claimer.</p>

@@ -37,5 +37,5 @@ def send_device_claim_email(device_claim):
         sender=current_app.config["ADMINS"][0],
         recipients=[device_claim.owner.email],
         text_body=render_template("emails/device_claim.txt", device_claim=device_claim, token=None),
-        html_body=render_template("emails/device_claim.txt", device_claim=device_claim, token=None),
+        html_body=render_template("emails/device_claim.html", device_claim=device_claim, token=None),
     )

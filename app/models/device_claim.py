@@ -7,7 +7,7 @@ class DeviceClaim(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    claim_message = db.Column(db.String(255), nullable=False)
+    claim_message = db.Column(db.String(255))
     claim_timestamp = db.Column(db.DateTime, default=datetime.utcnow())
 
     owner_message = db.Column(db.String(255))
@@ -17,6 +17,7 @@ class DeviceClaim(db.Model):
     admin_timestamp = db.Column(db.DateTime)
 
     is_approved = db.Column(db.Boolean)
+    provide_email = db.Column(db.Boolean)
 
     device_id = db.Column(db.Integer, db.ForeignKey("devices.id"))
     device = db.relationship("Device", backref=db.backref("claims", order_by=claim_timestamp))

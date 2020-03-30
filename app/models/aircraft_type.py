@@ -14,5 +14,8 @@ class AircraftType(db.Model):
     def choices(cls):
         return [(item.id, item.name) for item in cls.query.order_by(cls.category | cls.name)]
 
+    def __str__(self):
+        return str(self.name)
+
     # def __repr__(self):
     #    return "AircraftType(name={self.name}, category={self.category})".format(self=self)

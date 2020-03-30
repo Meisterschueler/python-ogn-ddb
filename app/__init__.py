@@ -10,6 +10,7 @@ from flask_babel import Babel, _
 from config import config
 
 db = SQLAlchemy()
+migrate = Migrate()
 admin = Admin(name="ddb admin", template_mode="bootstrap3")
 login = LoginManager()
 login.login_view = "main.login"
@@ -26,6 +27,7 @@ def create_app(config_name="default"):
     config[config_name].init_app(app)
 
     db.init_app(app)
+    migrate.init_app(app, db)
     admin.init_app(app)
     login.init_app(app)
     bootstrap.init_app(app)
@@ -38,10 +40,13 @@ def create_app(config_name="default"):
     app.register_blueprint(blueprint_main)
 
     from flask_admin.contrib.sqla import ModelView
-    from app.models import AircraftType, DeviceClaim
+    from app.models import AircraftType, Device, DeviceClaim, Receiver, User
 
     admin.add_view(ModelView(AircraftType, db.session))
+    admin.add_view(ModelView(Device, db.session))
     admin.add_view(ModelView(DeviceClaim, db.session))
+    admin.add_view(ModelView(Receiver, db.session))
+    admin.add_view(ModelView(User, db.session))
 
     return app
 

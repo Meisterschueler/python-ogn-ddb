@@ -2,13 +2,12 @@ import enum
 
 
 class AircraftCategory(enum.Enum):
-    SAILPLANE = 0
-    PLANE = 1
-    ULTRALIGHT = 2
-    HELICOPTER = 3
-    DRONE = 4
-    OTHER = 5
-    WTF = 6
+    SAILPLANE = 1
+    PLANE = 2
+    ULTRALIGHT = 3
+    HELICOPTER = 4
+    DRONE = 5
+    OTHER = 6
 
     @classmethod
     def choices(cls):

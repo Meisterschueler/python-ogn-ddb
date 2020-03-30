@@ -19,7 +19,7 @@ class RegisterForm(FlaskForm):
     submit = SubmitField(_l("Register"))
 
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
+        user = User.query.filter_by(email=email.data).one_or_none()
         if user is not None:
             raise ValidationError(_l("Please choose a different email address."))
 
@@ -44,7 +44,7 @@ class EditDeviceForm(FlaskForm):
 class ClaimDeviceForm(FlaskForm):
     address = StringField(_l("Device ID"), render_kw={"readonly": True})
     message = TextAreaField(_l("Message"), validators=[DataRequired(), Length(min=0, max=140)])
-    publish_email = BooleanField(_l("Send my email address"))
+    provide_email = BooleanField(_l("Send my email address"))
     submit = SubmitField(_l("Submit claim"))
 
 
