@@ -1,0 +1,539 @@
+ID,TYPE,MODEL
+1,2,Grumman AA-5
+2,3,A22 Foxbat
+3,1,Ka-6 cr
+4,6,UFO
+5,1,Antares 18 S
+6,1,Antares 18 T
+7,1,Antares 20 E
+8,1,Antares 23 E
+9,1,Apis 2
+10,2,Aquila A210
+11,1,Arcus E
+12,1,Arcus M
+13,1,Arcus T
+14,1,ASG-29
+15,1,ASG-29E
+16,1,ASH-25
+17,1,ASH-25 EB
+18,1,ASH-25 MI
+19,1,ASH-26 E
+20,1,ASH-30
+21,1,ASH-31 MI
+22,1,ASK-13
+23,1,ASK-16
+24,1,ASK-18
+25,1,ASK-21
+26,1,ASK-21 MI
+27,1,ASK-23
+28,1,Astir CS
+29,1,Astir CS-77
+30,1,ASW-12
+31,1,ASW-15
+32,1,ASW-17
+33,1,ASW-19
+34,1,ASW-20
+35,1,ASW-22
+36,1,ASW-22 B
+37,1,ASW-22 BL
+38,1,ASW-22 E
+39,1,ASW-24
+40,1,ASW-24 E
+41,1,ASW-27
+42,1,ASW-28
+43,1,ASW-28 18
+44,1,ASW-28t
+45,1,Caudron C800
+46,1,Castel 25-S
+47,2,TB-9 Tampico
+48,1,Baby
+49,1,Banjo
+50,2,Bellanca Citabria
+51,1,Bergfalke II
+52,1,Bergfalke III
+53,1,Bergfalke IV
+54,1,WA30 Bijave
+55,1,Blanik
+56,1,Breguet 901
+57,1,Breguet 904
+58,1,Breguet 905
+59,1,BS-1
+60,1,Calif A21S
+61,1,Carat
+62,2,Jodel D18
+63,2,Cessna 120
+64,2,Cessna 150
+65,2,Cessna 152
+66,2,Cessna 172
+67,2,Cessna 177
+68,2,Cessna 182
+69,2,Cessna 206
+70,2,Cessna 208
+71,2,Cessna 305
+72,1,Cirrus
+73,1,Cirrus 18m
+74,2,Cirrus SR20
+75,2,Cirrus SR22
+76,1,Cirrus Std
+77,1,Astir Club
+78,1,SZD-36 Cobra 15
+79,2,Columbia 350
+80,1,Concordia
+81,1,Crystal
+82,2,Jodel D140
+83,1,D38
+84,2,DA20 Katana
+85,2,DA40
+86,1,DFS Reiher
+87,1,DG-100
+88,1,DG-1000
+89,1,DG-1000 T
+90,1,DG-200
+91,1,DG-300
+92,1,DG-303
+93,1,DG-400
+94,1,DG-500
+95,1,DG-505
+96,1,DG-600
+97,1,DG-800
+98,1,DG-808 B
+99,1,DG-808 C
+100,2,DHC-1 Chipmunk
+101,1,Diamant
+102,1,SZD-56 Diana
+103,1,SZD-56-2 Diana 2
+104,1,Different Aircraft
+105,1,Discus
+106,1,Discus 2
+107,1,Discus 2c
+108,1,Discus 2cT
+109,1,Discus 2t
+110,1,Discus t
+111,2,DR-300
+112,2,DR-400
+113,1,Duo Discus
+114,1,Duo Discus t
+115,1,Duo Discus x
+116,1,Duo Discus xl
+117,1,Duo Discus xlt
+118,1,Duo Discus xt
+119,2,DV20 Katana
+120,3,DynAero MCR-01
+121,2,DynAero MCR-4S
+122,1,EB 28
+123,1,EB 29
+124,1,EB 29 D
+125,1,Elfe S4
+126,1,Elfe S4D
+127,1,WA28 Espadon
+128,1,Eta
+129,2,Europa XS
+130,3,Eurostar EV97
+131,1,Experimental
+132,1,Falcon-Glasfluegel
+133,1,A60 Fauconnet
+134,3,FK14
+135,3,Flight Design CTSW
+136,1,SZD-24 Foka
+137,1,Genesis 2
+138,2,Jodel D9
+139,1,Glasflugel 304
+140,1,Glasflugel 304S
+141,1,Glasflugel 304S T
+142,1,Glasflugel 604
+143,1,Glasflugel H301
+144,2,Grob G109
+145,6,Ground Station
+146,1,H36 Dimona
+147,6,HangGlider
+148,1,Hawker Hurricane
+149,4,Helicopter
+150,1,HK36 Super Dimona
+151,1,Hornet
+152,1,HPH 304C
+153,1,HPH 304CZ-17
+154,1,HPH 304S Shark
+155,2,Husky A-1
+156,3,Ikarus C42 B
+157,3,Ikarus C42 C
+158,1,IS-28B2
+159,1,IS-28M2
+160,1,IS-29D2
+161,1,SZD-38 Jantar 1
+162,1,SZD-42 Jantar 2/2b
+163,1,SZD-48-1 Jantar Std 2
+164,1,SZD-41 Jantar Std
+165,1,SZD-45 Ogar
+166,1,SZD-48-3 Jantar Std 3
+167,1,Janus A
+168,1,Janus B
+169,1,Janus C
+170,1,Janus Ce
+171,1,Janus CM
+172,1,WA21 Javelot
+173,1,Astir Jeans
+174,2,JOB 15
+175,2,Jodel D120
+176,1,JP 15/34
+177,1,JP 15/36
+178,1,JS-1 Revelation
+179,1,SZD-51 Junior
+180,1,Ka-2
+181,1,Ka-6 e
+182,1,Ka-7
+183,1,Ka-8
+184,1,Kestrel
+185,1,L 13 SEH Vivat
+186,1,LAK 19
+187,1,LAK-12
+188,1,LAK-17 A
+189,1,LAK-17 AT
+190,1,LAK-17 B
+191,1,LAK-17 BT
+192,1,LAK-19 T
+193,1,LAK-20
+194,1,LAK-20 M
+195,1,LAK-20 T
+196,1,LET L-33 Solo
+197,1,Arcus S
+198,1,Libelle Club
+199,1,Libelle Std
+200,1,LP-15 Nugget
+201,1,LS-1
+202,1,LS-1 c
+203,1,LS-1 d
+204,1,LS-1 f
+205,1,LS-10
+206,1,LS-11
+207,1,LS-2
+208,1,LS-3
+209,1,LS-4
+210,1,LS-5
+211,1,LS-6
+212,1,LS-6 18
+213,1,LS-7
+214,1,LS-8
+215,1,LS-8 18
+216,1,LS-8 st
+217,1,LS-8 st 18
+218,1,LS-8a
+219,1,LS-9
+220,1,L-Spatz 55
+221,1,L-Spatz III
+222,1,M-100 Mesange
+223,1,M-200 Foehn
+224,1,Marianne
+225,1,MDM-1 Fox
+226,2,ME 108 Taifun
+227,1,Mini Nimbus
+228,1,Mistral
+229,1,Mistral C
+230,1,Mosquito
+231,1,Motorglider
+232,2,Motorplane
+233,2,MS-892 Commodore
+234,2,MS-893 Commodore
+235,2,MS-894 Minerva
+236,1,Mu 22
+237,1,Mu 28
+238,3,Mustang (UL)
+239,1,Nimbus 1
+240,1,Nimbus 2
+241,1,Nimbus 3
+242,1,Nimbus 3D
+243,1,Nimbus 3DM
+244,1,Nimbus 3DT
+245,1,Nimbus 4
+246,1,Nimbus 4D
+247,1,Nimbus 4DM
+248,1,Nimbus 4DT
+249,1,NimEta
+250,1,OldTimer
+251,2,PA-18 Super Cub
+252,2,PA-25 Pawnee
+253,2,PA-28
+254,6,Paraglider
+255,1,Pegase
+256,1,Pegase Trainer
+257,3,Pegasus
+258,1,SZD-54 Perkoz
+259,1,Phoebus
+260,2,Piaggio P.149
+261,3,Piccolo B
+262,1,PIK-16 Wasama
+263,1,PIK-20 B
+264,1,PIK-20 D
+265,1,PIK-20 E
+266,1,Pilatus B4
+267,2,Pilatus PC-6
+268,2,Pioneer 300
+269,1,SZD-30 Pirat
+270,1,SZD-50 Puchacz
+271,1,PW-5
+272,1,PW-6
+273,1,Quintus
+274,3,Remos GX
+275,3,Roland Z602 XL
+276,1,Salto H101
+277,1,SB-10
+278,1,SB-12
+279,1,SB-5 b
+280,1,SB-5 e
+281,1,SB-7
+282,1,Schreder HP14
+283,1,Schreder HP-18
+284,1,SF-25
+285,1,SF-27
+286,1,SF-28
+287,1,SF-34
+288,1,SFS-31 Milan
+289,1,SGS 1-26
+290,1,SGS 1-35
+291,1,SGS 2-33A
+292,1,SHK-1
+293,1,Silent 2 Targa
+294,1,Silent-IN
+295,1,Sinus
+296,3,Skylane Airlony
+297,1,Slingsby Skylark 4
+298,1,Slingsby Vega 15m
+299,1,Alliance 34
+300,2,TB-10 Tobago
+301,2,TB-20 Trinidad
+302,1,Speed Astir
+303,1,Speed Astir II
+304,2,RF 5
+305,1,Sport Vega
+306,1,WA26 Squale
+307,1,Std. Astir II
+308,1,Std. Astir III
+309,1,Std. Austria SH1
+310,1,Stemme S-10
+311,1,WA22 Super-Javelot
+312,2,Supermarine Spitfire
+313,1,Swift
+314,1,SZD-55
+315,1,SZD-59 Acro
+316,1,SZD-9 Bocian
+317,1,Taurus
+318,3,Tetra-15
+319,3,TL-2000 Sting
+320,1,Topaze
+321,2,Towplane
+322,1,TST-10
+323,1,Twin Astir I
+324,1,Twin Astir II
+325,1,Twin Astir III
+326,3,Ultralight
+327,1,Ultralight Glider
+328,1,Valentin Kiwi
+329,2,Vans RV-12
+330,2,Vans RV-6a
+331,2,Vans RV-8
+332,2,Vans RV-9
+333,1,Ventus
+334,1,Ventus 2
+335,1,Ventus 2bx
+336,1,Ventus 2cM
+337,1,Ventus 2ct
+338,1,Ventus 2CX
+339,1,Ventus 2CXa
+340,1,Ventus 2cxa FES
+341,1,Ventus 2cxM
+342,1,Ventus 2cxT
+343,1,Ventus 2M
+344,1,Ventus 2t
+345,1,Ventus bT
+346,1,Ventus c
+347,1,Ventus cM
+348,1,Ventus ct
+349,1,Ventus M
+350,1,Ventus t
+351,3,VL3 Evolution
+352,2,Vulcanair P68C
+353,2,PZL-104 Wilga
+354,3,WT9 Dynamic
+355,3,Zodiac CH601XL
+356,1,Zugvogel IIIa
+357,1,Zugvogel IIIb
+358,1,AK-5
+359,1,AFH-24
+360,1,AFH-22
+361,1,C30S Edelweiss
+362,6,Unknown
+363,1,Other
+364,2,Midour
+365,2,Yak-12
+366,1,LS-4 W
+367,1,ASG-32 MI
+368,1,ASK-14
+369,2,DR-250
+370,1,SZD-48 Jantar Std 2
+371,2,Jodel D112
+372,2,Jodel D113
+373,2,Jodel D119
+374,1,JS-1 B Revelation
+375,1,JS-1 C18 Evo
+376,1,JS-1 C21
+377,1,LAK-12 R
+378,1,Nimbus 2 C
+379,2,RF 3
+380,2,RF 4
+381,2,RF 5 b
+382,2,RF 47
+383,2,RF 7
+384,1,RF 9
+385,1,RF 10
+386,4,AS 350
+387,4,EC 135
+388,4,AS 365
+389,4,EC 175
+390,4,A 119
+391,4,EC 120
+392,4,EC 130
+393,2,Bellanca Scout
+394,2,Bellanca Decathlon
+395,2,Mooney
+396,2,Piper J-3 Cub
+397,2,Pilatus PC-12
+398,1,AV 36 Fauvel
+399,1,SZD-19 Zefir
+400,1,SZD-21 Kobuz
+401,1,SZD-22 Mucha Standard
+402,1,SZD-23 Bocian 2
+403,1,SZD-29 Zefir 3
+404,1,SZD-31 Zefir 4
+405,1,SZD-32 Foka 5
+406,1,SZD-51 Krokus
+407,1,Doppelraab
+408,3,Lambada
+409,3,Phoenix
+410,4,Robinson R44
+411,3,EuroFox
+412,2,Z-226 trener
+413,1,VSO-10
+414,1,LAK-17B FES
+415,1,Capstan
+417,1,Silent 2 Electro
+418,2,Avro Lancaster
+419,2,Douglas Dakota
+420,2,Avro Vulcan
+421,1,A380
+422,3,Sensation
+423,2,Cessna T303
+424,2,Maule M-7-235
+425,2,Maule M-7
+426,5,DJI Inspire
+427,5,DJI Phantom
+428,5,DJI S1000
+429,5,DJI S900
+430,5,Drone/UAV
+431,5,DJI S800
+432,5,MikroKopter Okto
+433,5,MikroKopter Hexa
+434,5,MikroKopter Quadro
+435,5,Parrot Bebop
+436,5,Parrot AR.Drone
+437,5,Parrot senseFly
+438,1,Janus CT
+439,2,Luscombe 8E
+440,6,Baloon
+442,2,AK-2R
+443,1,LS-6 18WJ
+444,1,PIK-30
+445,1,Slingsby T51 Dart 17WR
+446,1,Slingsby Skylark 3F
+447,1,AVo 68 Samburo
+448,1,Kranich III
+449,1,Grunau Baby
+450,2,Fuji FA-200
+451,3,AutoGyro MTOsport
+452,1,Olympia 463
+453,2,PIK-15 Hinu
+454,1,VT-116 Orlik II
+455,3,Samba XXL
+456,2,CallAir A-9
+457,4,A 109
+458,4,Bell 206
+459,4,Bell 407
+460,4,ENF 28
+461,4,ENF 480
+462,4,Cabri G2
+463,4,HU 269
+464,4,SC 330
+465,4,K1200
+466,4,HU 369
+467,4,MD 500
+468,4,MD 600
+469,4,Robinson R22
+470,4,Robinson R66
+471,2,Jodel DR-1050
+472,2,AS202/32TP Turbo Bravo
+474,1,Banjo MH
+475,1,DuoBanjo
+476,3,Allegro 2000
+477,3,FM250 Vampire
+478,1,SkyArrow
+479,3,Gyrocopter
+480,3,ArrowCopter
+481,2,Tecnam P2002 JF
+482,2,PA-17 Piper
+483,1,Valentin Taifun
+484,2,Socata Rallye 235CA-M
+485,3,SkyRanger
+486,2,SportCruiser
+487,3,SkyRanger Nynja
+488,1,PZL Krosno KR-03 Puchatek
+489,3,A2 CZ Ellipse Spirit
+490,2,Scottish Aviation Bulldog
+491,2,Vans RV-4
+492,3,FK9 Mark 2
+493,1,Mu 26
+494,4,BK 117
+495,2,Diamond DA42
+496,1,miniLAK
+497,1,miniLAK T
+498,1,miniLAK FES
+499,1,GP 11 Pulse
+500,1,GP 14 S Velo
+501,1,GP 14 SE Velo
+502,1,GP 15 S Jeta
+503,1,GP 15 SE Jeta
+504,1,Ka-4
+505,1,JS-3 15M
+506,1,JS-3 18M
+507,1,Ventus 3T
+508,1,Ventus 3M
+509,1,Ventus 3F
+510,3,Stratos 300
+511,2,PA-30 Twin Comanche
+512,1,LG-425 Sohaj
+513,2,L-60 Brigadyr
+514,3,P.220S Koala
+515,3,P 220 Koala
+516,2,Polikarpov Po-2
+517,2,Lisunov Li-2
+518,2,Rubik R-18 Kanya
+519,2,Banhidi Gerle
+520,1,AS 33
+521,3,Scheibe SF 40
+522,3,Alpaero Choucas
+523,1,Vliegtuigbouw 013 Sagitta
+524,2,Cessna 185
+525,2,Rallye 180T-D
+526,1,Rhonbussard
+527,1,Smyk
+528,2,Zlin 50
+529,2,Zlin 142
+530,2,Zlin 242
+531,2,Zlin 526F
+532,2,Extra 330
+533,2,Antonov 2
+534,2,Rutan VariEze
+535,1,SB-11
+536,1,SB-14
+537,3,Pipistrel Virus
+538,2,Aero Boero 180
+539,1,Slingsby T51 Dart 17R
+540,2,Tecnam P2006T
+541,2,Grob G120TP
