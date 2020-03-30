@@ -30,12 +30,14 @@ def all_devices():
 @bp.route("/my_receivers")
 @login_required
 def my_receivers():
-    return render_template("receivers.html", title=_("Receivers"))
+    receivers = current_user.receivers
+    return render_template("receivers.html", title=_("Receivers"), receivers=receivers)
 
 
 @bp.route("/all_receivers")
 def all_receivers():
-    return render_template("receivers.html", title=_("Receivers"))
+    receivers = Receiver.query.all()
+    return render_template("receivers.html", title=_("Receivers"), receivers=receivers)
 
 
 @bp.route("/edit_receiver", methods=["GET", "POST"])
@@ -120,6 +122,9 @@ def login():
         if user is None or not user.check_password(form.password.data):
             flash(_("Invalid email address or password"))
             return redirect(url_for("main.login"))
+        elif not user.is_activated:
+            flash(_("User not activated yet"))
+            return redirect(url_for("main.login"))
 
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get("next")
@@ -146,10 +151,10 @@ def request_password_reset():
 
     form = ResetPasswordRequestForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(email=form.email.data).one_or_none()
         if user:
-            # send email
-            pass
+            from app.email import send_password_reset_email
+            send_password_reset_email(user)
 
         flash(_("Check your email for the instructions to reset your password"))
         return redirect(url_for("main.login"))
@@ -281,6 +286,7 @@ def claim_device():
         device_claim.device = device
         device_claim.owner = device.user
         device_claim.claimer = current_user
+        device_claim.provide_email = form.provide_email.data
         db.session.commit()
 
         from app.email import send_device_claim_email

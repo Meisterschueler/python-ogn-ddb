@@ -18,4 +18,4 @@ class Antenna(enum.Enum):
         return cls(int(item)) if not isinstance(item, cls) else item
 
     def __str__(self):
-        return str(self.value)
+        return str(self.name)

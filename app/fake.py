@@ -1,22 +1,25 @@
 import os
 import csv
 from app import db
-from app.models import Antenna, AircraftType, AircraftCategory, User, Device, DeviceType, Preamplifier, Receiver, RxFilter, SdrDongle
+from app.models import Antenna, AircraftType, AircraftCategory, User, Device, DeviceClaim, DeviceType, Preamplifier, Receiver, RxFilter, SdrDongle
 
 
 basepath = os.path.dirname(os.path.realpath(__file__))
 
 
-def build_db_from_ddb():
-    user = User(email="user1@email.com")
-    user.set_password("topsecret")
-    db.session.add(user)
+def delete_data():
+    Device.query.delete()
+    Receiver.query.delete()
+    DeviceClaim.query.delete()
 
+    AircraftType.query.delete()
+    User.query.delete()
+
+
+def import_devices(user):
     with open(os.path.join(basepath, "ressources/ddb.txt")) as csvfile:
         csvreader = csv.DictReader(csvfile, delimiter=",", quotechar="'")
-        i = 0
         for row in csvreader:
-            i += 1
             device_type = {"F": DeviceType.FLARM, "I": DeviceType.ICAO, "O": DeviceType.OGN}[row["#DEVICE_TYPE"]]
             address = row["DEVICE_ID"]
             aircraft_type_name = row["AIRCRAFT_MODEL"]
@@ -32,13 +35,34 @@ def build_db_from_ddb():
 
             Device(device_type=device_type, aircraft_type=aircraft_type, address=address, registration=registration, cn=cn, show_track=show_track, show_identity=show_identity, user=user)
 
-            if i == 1000:
-                break
 
-        db.session.commit()
+def import_aircrafts():
+    with open(os.path.join(basepath, "ressources/aircrafts.csv")) as csvfile:
+        csvreader = csv.DictReader(csvfile, delimiter=",")
+        for row in csvreader:
+            id = row["ID"]
+            category = AircraftCategory.coerce(row["CATEGORY"])
+            model = row["MODEL"]
+
+            aircraft_type = AircraftType(id=id, name=model, category=category)
+            db.session.add(aircraft_type)
+
+
+def build_db_from_ddb():
+    delete_data()
+
+    user = User(email="user1@email.de")
+    user.set_password("topsecret")
+    db.session.add(user)
+
+    import_aircrafts()
+    import_devices(user=user)
+    db.session.commit()
 
 
 def build_db():
+    delete_data()
+
     a1 = AircraftType(name="ASH 25", category=AircraftCategory.SAILPLANE)
     a2 = AircraftType(name="Concorde", category=AircraftCategory.PLANE)
     a3 = AircraftType(name="Untertasse", category=AircraftCategory.DRONE)
