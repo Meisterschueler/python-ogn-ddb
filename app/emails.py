@@ -20,22 +20,34 @@ def send_async_email(app, msg):
         mail.send(msg)
 
 
+def send_account_activation_email(user):
+    token = user.get_account_activation_token()
+    send_mail(
+        subject=_("OGN Devices Database - Account Activation"),
+        sender=current_app.config["ADMINS"][0],
+        recipients=[user.email],
+        text_body=render_template("emails/account_activation.txt", user=user, token=token),
+        html_body=render_template("emails/account_activation.txt", user=user, token=token),
+    )
+
+
 def send_password_reset_email(user):
     token = user.get_password_reset_token()
     send_mail(
         subject=_("OGN Devices Database - Password Reset"),
         sender=current_app.config["ADMINS"][0],
         recipients=[user.email],
-        text_body=render_template("email/reset_password.txt", user=user, token=token),
-        html_body=render_template("email/reset_password.html", user=user, token=token),
+        text_body=render_template("emails/reset_password.txt", user=user, token=token),
+        html_body=render_template("emails/reset_password.html", user=user, token=token),
     )
 
 
 def send_device_claim_email(device_claim):
+    token = device_claim.get_token()
     send_mail(
         subject=_("OGN Devices Database - Device Claim"),
         sender=current_app.config["ADMINS"][0],
         recipients=[device_claim.owner.email],
-        text_body=render_template("emails/device_claim.txt", device_claim=device_claim, token=None),
-        html_body=render_template("emails/device_claim.html", device_claim=device_claim, token=None),
+        text_body=render_template("emails/device_claim.txt", device_claim=device_claim, token=token),
+        html_body=render_template("emails/device_claim.html", device_claim=device_claim, token=token),
     )

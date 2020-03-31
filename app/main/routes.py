@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _
@@ -101,14 +102,36 @@ def register():
 
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User(email=form.email.data)
+        user = User(email=form.email.data, is_activated=False)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash(_("Congratulations! You are now a registered user."))
+
+        from app.emails import send_account_activation_email
+        send_account_activation_email(user)
+
+        flash(_("An email has just been sent to you, you'll find instructions on how to validate your account."))
         return redirect(url_for("main.index"))
 
     return render_template("form_generator.html", title=_("Register"), form=form)
+
+
+@bp.route("/account_activation/<token>", methods=["GET", "POST"])
+def account_activation(token):
+    if current_user.is_authenticated:
+        return redirect(url_for("main.index"))
+
+    user = User.verify_account_activation_token(token)
+    if not user:
+        return redirect(url_for("main.index"))
+
+    if not user.is_activated:
+        user.is_activated = True
+        db.session.commit()
+        flash(_("Your account is activated, now you can login."), category='success')
+    else:
+        flash(_("Your account is already activated."), category='warning')
+    return redirect(url_for("main.login"))
 
 
 @bp.route("/login", methods=["GET", "POST"])
@@ -153,7 +176,7 @@ def request_password_reset():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).one_or_none()
         if user:
-            from app.email import send_password_reset_email
+            from app.emails import send_password_reset_email
             send_password_reset_email(user)
 
         flash(_("Check your email for the instructions to reset your password"))
@@ -167,7 +190,7 @@ def reset_password(token):
     if current_user.is_authenticated:
         return redirect(url_for("main.index"))
 
-    user = User.verify_password_token(token)
+    user = User.verify_reset_password_token(token)
     if not user:
         return redirect(url_for("main.index"))
 
@@ -289,7 +312,7 @@ def claim_device():
         device_claim.provide_email = form.provide_email.data
         db.session.commit()
 
-        from app.email import send_device_claim_email
+        from app.emails import send_device_claim_email
         send_device_claim_email(device_claim)
 
         flash(_("Claim successfully commited"), category="success")
@@ -300,13 +323,38 @@ def claim_device():
     return render_template("form_generator.html", title=_("Claim Device Ownership"), form=form)
 
 
-@bp.route("/claim_confirmed/<token>", methods=["GET", "POST"])
+@bp.route("/claim_accepted/<token>", methods=["GET", "POST"])
 @login_required
-def claim_confirmed(token):
-    pass
+def claim_accepted(token):
+    device_claim = DeviceClaim.verify_token(token)
+    if not device_claim or device_claim.owner != current_user:
+        return redirect(url_for("main.index"))
+
+    device_claim.owner_timestamp = datetime.utcnow()
+    device_claim.owner_message = f"accepted with token {token}"
+
+    device_claim.is_approved = True
+    device_claim.device.user = device_claim.claimer
+
+    db.session.commit()
+    flash(_("Claim accepted."), category="success")
+
+    return redirect(url_for("main.index"))
 
 
 @bp.route("/claim_rejected/<token>", methods=["GET", "POST"])
 @login_required
 def claim_rejected(token):
-    pass
+    device_claim = DeviceClaim.verify_token(token)
+    if not device_claim or device_claim.owner != current_user:
+        return redirect(url_for("main.index"))
+
+    device_claim.owner_timestamp = datetime.utcnow()
+    device_claim.owner_message = f"rejected with token {token}"
+
+    device_claim.is_approved = False
+
+    db.session.commit()
+    flash(_("Claim rejected."), category="success")
+
+    return redirect(url_for("main.index"))

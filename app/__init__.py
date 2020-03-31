@@ -39,14 +39,15 @@ def create_app(config_name="default"):
 
     app.register_blueprint(blueprint_main)
 
-    from flask_admin.contrib.sqla import ModelView
-    from app.models import AircraftType, Device, DeviceClaim, Receiver, User
-
-    admin.add_view(ModelView(AircraftType, db.session))
-    admin.add_view(ModelView(Device, db.session))
-    admin.add_view(ModelView(DeviceClaim, db.session))
-    admin.add_view(ModelView(Receiver, db.session))
-    admin.add_view(ModelView(User, db.session))
+    if not app.config['TESTING']:
+        from flask_admin.contrib.sqla import ModelView
+        from app.models import AircraftType, Device, DeviceClaim, Receiver, User
+    
+        admin.add_view(ModelView(AircraftType, db.session))
+        admin.add_view(ModelView(Device, db.session))
+        admin.add_view(ModelView(DeviceClaim, db.session))
+        admin.add_view(ModelView(Receiver, db.session))
+        admin.add_view(ModelView(User, db.session))
 
     return app
 

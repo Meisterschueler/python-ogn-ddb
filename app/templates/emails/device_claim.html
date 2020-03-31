@@ -25,7 +25,7 @@
 <p>The claimer added following message: "{{ device_claim.claim_message }}"</p>
 
 {% if device_claim.provide_email == True -%}</p>
-<p>{{ _("The claimer provided his email address so you can directly contact him via email:") }} mailto:{{ device_claim.claimer.email }}</p>
+<p>The claimer provided his email address so you can directly contact him via email: <a href="mailto:{{ device_claim.claimer.email }}">{{ device_claim.claimer.email }}</a></p>
 <p>{%- endif %}</p>
 
 <p>The reason for the claim could be one of the following:</p>
@@ -36,7 +36,9 @@
 </ol>
 
 <p>To <strong>ACCEPT</strong> the claim, please click following link:</p>
+<a href="{{ url_for('main.claim_accepted', token=token, _external=True) }}">{{ url_for('main.claim_accepted', token=token, _external=True) }}</a>
 
 <p>To <strong>REJECT</strong> the claim, please click following link:</p>
+<a href="{{ url_for('main.claim_rejected', token=token, _external=True) }}">{{ url_for('main.claim_rejected', token=token, _external=True) }}</a>
 
 <p><strong>IMPORTANT NOTE: </strong>if you ignore this mail, after 30 days it will be assumed as confirmation and the device id will automatically tranferred to the claimer.</p>

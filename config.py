@@ -24,9 +24,14 @@ class Config(object):
     def init_app(app):
         pass
 
+class TestingConfig(Config):
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
+    LOGIN_DISABLED = True
+    TESTING = True
+
 config = {
     'development': Config,
-    'testing': Config,
+    'testing': TestingConfig,
     'production': Config,
               
     'default': Config

@@ -32,11 +32,22 @@ class User(UserMixin, db.Model):
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode({"reset_password": self.id, "exp": time() + expires_in}, current_app.config["SECRET_KEY"], algorithm="HS256").decode("utf-8")
 
+    def get_account_activation_token(self, expires_in=600):
+        return jwt.encode({"account_activation": self.id, "exp": time() + expires_in}, current_app.config["SECRET_KEY"], algorithm="HS256").decode("utf-8")
+
     @staticmethod
     def verify_password_token(token):
         try:
             payload = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
             return User.query.get(payload['reset_password']) if time() <= payload['exp'] else None
+        except Exception:
+            return None
+
+    @staticmethod
+    def verify_account_activation_token(token):
+        try:
+            payload = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
+            return User.query.get(payload['account_activation']) if time() <= payload['exp'] else None
         except Exception:
             return None
 

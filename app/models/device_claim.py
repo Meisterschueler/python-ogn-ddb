@@ -1,4 +1,7 @@
+from time import time
+import jwt
 from datetime import datetime
+from flask import current_app
 from app import db
 
 
@@ -30,3 +33,14 @@ class DeviceClaim(db.Model):
 
     admin_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     admin = db.relationship("User", foreign_keys=[admin_id], backref=db.backref("claims_ad_admin", order_by=claim_timestamp))
+
+    def get_token(self, expires_in=600):
+        return jwt.encode({"device_claim": self.id, "exp": time() + expires_in}, current_app.config["SECRET_KEY"], algorithm="HS256").decode("utf-8")
+
+    @staticmethod
+    def verify_token(token):
+        try:
+            payload = jwt.decode(token, current_app.config["SECRET_KEY"], algorithms=["HS256"])
+            return DeviceClaim.query.get(payload['device_claim']) if time() <= payload['exp'] else None
+        except Exception:
+            return None
