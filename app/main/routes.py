@@ -67,12 +67,6 @@ def edit_receiver():
     return render_template("form_generator.html", title=_("Edit Receiver"), form=form)
 
 
-@bp.route("/aircraft_types")
-def aircraft_types():
-    aircraft_types = AircraftType.query.order_by(AircraftType.category, AircraftType.name).all()
-    return render_template("aircraft_types.html", title=_("Aircraft Types"), aircraft_types=aircraft_types)
-
-
 @bp.route("/downloads")
 def downloads():
     return render_template("downloads.html", title=_("Downloads"))
@@ -87,12 +81,6 @@ def about():
 @login_required
 def user():
     return render_template("user.html", title=_("User"))
-
-
-@bp.route("/claims")
-@login_required
-def claims():
-    return render_template("user.html", title=_("Claims"))
 
 
 @bp.route("/register", methods=["GET", "POST"])
