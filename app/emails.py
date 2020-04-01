@@ -27,7 +27,7 @@ def send_account_activation_email(user):
         sender=current_app.config["ADMINS"][0],
         recipients=[user.email],
         text_body=render_template("emails/account_activation.txt", user=user, token=token),
-        html_body=render_template("emails/account_activation.txt", user=user, token=token),
+        html_body=render_template("emails/account_activation.html", user=user, token=token),
     )
 
 

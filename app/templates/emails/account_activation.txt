@@ -1,0 +1,9 @@
+Dear OGN user,
+
+to activate your account click here:
+{{ url_for('main.account_activation', token=token, _external=True) }}
+
+If you have not requested an account activation simply ignore this message.
+
+Sincerely,
+The OGN Team
