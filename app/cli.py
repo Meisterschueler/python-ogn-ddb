@@ -34,20 +34,40 @@ def register(app):
             raise RuntimeError("compile command failed")
 
     @app.cli.group()
-    def fakedata():
-        """Insert fake data for debugging and testing purposes."""
+    def filldata():
+        """Insert data into database for debugging and testing purposes."""
         pass
 
-    @fakedata.command()
-    def data():
-        """Fill db with some fake data."""
-        from app.fake import build_db
+    @filldata.command()
+    @click.option('--sure', required=True, default='no', show_default=True)
+    def deleteall(sure):
+        """Delete ALL data."""
 
-        build_db()
+        if sure.lower().startswith(('y', 'j')):
+            from app import db
+            db.drop_all()
+            db.create_all()
+            print("Cleared the database.")
+        else:
+            print("Add argument '--sure y' to empty the database.")
 
-    @fakedata.command()
-    def ddb():
-        """Fill db with data from ddb."""
-        from app.fake import build_db_from_ddb
+    @filldata.command()
+    def aircrafts():
+        """Drops ALL aircraft_types and import aircraft_types again (ressource file)."""
+        from app.filldata import import_aircrafts
 
-        build_db_from_ddb()
+        import_aircrafts()
+
+    @filldata.command()
+    def fakedata():
+        """Fills db with fake data for debugging purposes."""
+        from app.filldata import import_fakedata
+
+        import_fakedata()
+
+    @filldata.command()
+    def devices():
+        """Fills db with data from ddb (ressource file)."""
+        from app.filldata import import_devices
+
+        import_devices()
