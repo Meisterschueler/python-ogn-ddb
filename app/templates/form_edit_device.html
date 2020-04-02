@@ -1,0 +1,32 @@
+{% extends "form_generator.html" %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+{% autoescape false %}
+var aircraft_data = {{ aircraft_data }};
+{% endautoescape %}
+
+var selectfield_aircraft_category = $('select#aircraft_category');
+var selectfield_aircraft_type = $('select#aircraft_type');
+
+selectfield_aircraft_category.change(function(ev) {
+	selectfield_aircraft_type.empty();
+	
+	var aircraft_types = aircraft_data[$('select#aircraft_category option:selected').text()];
+	for (var aircraft_type in aircraft_types) {
+		selectfield_aircraft_type.append($('<option>', {'value': aircraft_types[aircraft_type][0], 'text': aircraft_types[aircraft_type][1]}));
+	}	
+});
+
+{% if aircraft_type != none %}
+	selectfield_aircraft_category.val("{{ aircraft_type.category.value }}");
+{% endif %}
+selectfield_aircraft_category.trigger("change");
+
+{% if aircraft_type != none %}
+	selectfield_aircraft_type.val("{{ aircraft_type.id }}");
+{% endif %}
+
+</script>
+{% endblock %}

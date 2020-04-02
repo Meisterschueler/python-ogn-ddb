@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SelectField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError, Email, EqualTo, Regexp
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from flask_babel import lazy_gettext as _l
-from app.models import Antenna, User, DeviceType, Preamplifier, RxFilter, SdrDongle
+from app.models import AircraftCategory, AircraftType, Antenna, User, DeviceType, Preamplifier, RxFilter, SdrDongle
 
 
 class LoginForm(FlaskForm):
@@ -33,7 +34,8 @@ class AddDeviceForm(FlaskForm):
 class EditDeviceForm(FlaskForm):
     address = StringField(_l("Device ID"), render_kw={"readonly": True})
     device_type = SelectField(_l("Device type"), choices=DeviceType.choices(), coerce=DeviceType.coerce)
-    aircraft_type_id = SelectField(_l("Aircraft type"), choices=[], coerce=int)
+    aircraft_category = SelectField(_l("Aircraft category"), choices=AircraftCategory.choices(), coerce=AircraftCategory.coerce)
+    aircraft_type = QuerySelectField(_l("Aircraft type"), query_factory=lambda: AircraftType.query)
     registration = StringField(_l("Registration"), validators=[Length(max=7)])
     cn = StringField(_l("CN"), validators=[Length(max=3)])
     show_track = BooleanField(_l("I want this device to be tracked"))
@@ -50,7 +52,7 @@ class ClaimDeviceForm(FlaskForm):
 
 class ResetPasswordRequestForm(FlaskForm):
     email = StringField(_l("Email"), validators=[DataRequired(), Email()])
-    submit = SubmitField(_l("Request Password Reset"))
+    submit = SubmitField(_l("Submit Request"))
 
 
 class ResetPasswordForm(FlaskForm):

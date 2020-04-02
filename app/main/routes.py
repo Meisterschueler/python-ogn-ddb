@@ -1,12 +1,14 @@
 from datetime import datetime
+import json
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _
 from werkzeug.urls import url_parse
 from app import db
 from app.main.forms import RegisterForm, LoginForm, ResetPasswordForm, ResetPasswordRequestForm, AddDeviceForm, EditDeviceForm, ClaimDeviceForm, EditReceiverForm
-from app.models import AircraftType, Device, DeviceClaim, User, Receiver
+from app.models import AircraftCategory, AircraftType, Device, DeviceClaim, User, Receiver
 from app.main import bp
+from app.emails import send_password_reset_email, send_account_activation_email, send_device_claim_email
 
 
 @bp.route("/")
@@ -95,7 +97,6 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        from app.emails import send_account_activation_email
         send_account_activation_email(user)
 
         flash(_("An email has just been sent to you, you'll find instructions on how to validate your account."))
@@ -164,7 +165,6 @@ def request_password_reset():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).one_or_none()
         if user:
-            from app.emails import send_password_reset_email
             send_password_reset_email(user)
 
         flash(_("Check your email for the instructions to reset your password"))
@@ -228,11 +228,15 @@ def edit_device():
     device = Device.query.filter_by(id=device_id).filter_by(user_id=current_user.id).first_or_404()
 
     form = EditDeviceForm()
-    form.aircraft_type_id.choices = AircraftType.choices()
+
+    aircraft_data = {}
+    for category in AircraftCategory:
+        aircraft_types = [(at.id, at.name) for at in AircraftType.query.filter_by(category=category).order_by(AircraftType.name)]
+        aircraft_data[category.name] = aircraft_types
 
     if form.validate_on_submit():
         device.device_type = form.device_type.data
-        device.aircraft_type_id = form.aircraft_type_id.data
+        device.aircraft_type_id = form.aircraft_type.data.id
         device.registration = form.registration.data.upper()
         device.cn = form.cn.data.upper()
         device.show_track = form.show_track.data
@@ -242,13 +246,17 @@ def edit_device():
     elif request.method == "GET":
         form.address.data = device.address
         form.device_type.data = device.device_type
-        form.aircraft_type_id.data = device.aircraft_type_id
         form.registration.data = device.registration
         form.cn.data = device.cn
         form.show_track.data = device.show_track
         form.show_identity.data = device.show_identity
 
-    return render_template("form_generator.html", title=_("Edit Device"), form=form)
+    return render_template(
+        "form_edit_device.html",
+        title=_("Edit Device"),
+        form=form,
+        aircraft_data=json.dumps(aircraft_data),
+        aircraft_type=device.aircraft_type)
 
 
 @bp.route("/delete_device", methods=["GET", "POST"])
@@ -300,7 +308,6 @@ def claim_device():
         device_claim.provide_email = form.provide_email.data
         db.session.commit()
 
-        from app.emails import send_device_claim_email
         send_device_claim_email(device_claim)
 
         flash(_("Claim successfully commited"), category="success")
