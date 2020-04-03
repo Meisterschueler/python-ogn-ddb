@@ -20,7 +20,7 @@ def index():
 @bp.route("/my_devices")
 @login_required
 def my_devices():
-    devices = current_user.devices
+    devices = Device.query.filter(db.or_(Device.user == current_user, Device.following_users.contains(current_user))).all()
     return render_template("devices.html", title=_("Devices"), devices=devices)
 
 
