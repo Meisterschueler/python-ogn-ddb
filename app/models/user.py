@@ -1,6 +1,6 @@
 from time import time
 import jwt
-from werkzeug.security import generate_password_hash, check_password_hash
+from crypt import crypt
 from flask import current_app
 from flask_login import UserMixin
 from app import db, login
@@ -18,10 +18,10 @@ class User(UserMixin, db.Model):
     followed_receivers = db.relationship("Receiver", secondary="association_table_users_receivers")
 
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = crypt(password, current_app.config["OGN_SECRET_KEY"])
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        return crypt(password, current_app.config["OGN_SECRET_KEY"]) == self.password_hash
 
     def __str__(self):
         return self.email

@@ -20,9 +20,15 @@ class Config(object):
     # administrator list
     ADMINS = ['your-gmail-username@gmail.com']
     
+    # OGN settings
+    OGN_SECRET_KEY = os.environ.get("OGN_SECRET_KEY", "GliderNetdotOrg")
+    
     @staticmethod
     def init_app(app):
         pass
+
+class DevelopmentConfig(Config):
+    DEVELOPMENT = True
 
 class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
@@ -30,7 +36,7 @@ class TestingConfig(Config):
     TESTING = True
 
 config = {
-    'development': Config,
+    'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': Config,
               
