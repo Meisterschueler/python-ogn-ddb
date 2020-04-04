@@ -1,8 +1,9 @@
 import unittest
 from app.models import Device, User
+from .base import TestCaseBase
 
 
-class TestModels(unittest.TestCase):
+class TestModels(TestCaseBase):
     def test_user_password(self):
         user = User()
         password = "my_secret"
