@@ -1,5 +1,6 @@
 from io import StringIO
 import csv
+import re
 from flask import request, make_response, jsonify
 from app import db
 from app.models import Device
@@ -93,8 +94,27 @@ def download():
         return response
 
 
-@bp.route("/download-fln.php")
+def _encode_string(string, width):
+    return ''.join(["{0:02x}".format(ord(c)) for c in re.sub(r'[^\x00-\x7F]+', '?', string[:width]).ljust(width)])
+
+
+@bp.route("/download/download-fln.php")
 def download_fln():
-    # devices = Device.query.filter_by(show_track=True).filter_by(show_identity=True).all()
-    # return render_template("index.html")
-    pass
+    lines = ["002c38"]                                    # version
+
+    for device in Device.query.filter(Device.show_track and Device.show_identity).order_by(Device.address):
+        parts = [
+            _encode_string(device.address, 6),               # address
+            _encode_string('', 21),                          # owner
+            _encode_string('', 21),                          # airport
+            _encode_string(device.aircraft_type.name, 21),   # aircraft
+            _encode_string(device.registration, 7),          # registration
+            _encode_string(device.cn, 3),                    # cn
+            _encode_string('', 7)                            # frequency
+        ]
+        lines.append(''.join(parts))
+
+    # return text/plain
+    response = make_response('\n'.join(lines), 200)
+    response.mimetype = "text/plain"
+    return response

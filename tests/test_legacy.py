@@ -1,5 +1,6 @@
 import unittest
 import json
+import codecs
 from app.filldata import import_fakedata
 from .base import TestCaseBase
 
@@ -150,6 +151,21 @@ class TestLegacy(TestCaseBase):
             )
 
             self.assertEqual(data, shouldbe)
+
+    def test_download_fln(self):
+        import_fakedata()
+        with self.app.test_client() as c:
+            response = c.get(f'/download/download-fln.php', follow_redirects=True)
+            data = response.get_data().decode('utf-8')
+            decoded_data = '\n'.join(codecs.decode(line, "hex").decode('utf-8') for line in data.split('\n')[1:])
+
+            shouldbe = (
+                "ABCDEF                                          Rh?nl?rche ?-32      D-OTTO TO        \n"
+                "DD1234                                          ASK-13               D-1234 34        \n"
+                "DD4711                                          ASH-25               D-4711 11        "
+            )
+
+            self.assertEqual(decoded_data, shouldbe)
 
 
 if __name__ == "__main__":
