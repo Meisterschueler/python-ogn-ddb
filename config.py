@@ -31,9 +31,10 @@ class DevelopmentConfig(Config):
     DEVELOPMENT = True
 
 class TestingConfig(Config):
+    TESTING = True
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     LOGIN_DISABLED = True
-    TESTING = True
+    WTF_CSRF_ENABLED = False
 
 config = {
     'development': DevelopmentConfig,

@@ -1,25 +1,6 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-<script>
-  function ajax_follow(device_id) {
-    $.ajax({url: "/follow_device/" + device_id, success: function(result){
-      if (result == 'success') {
-        $("#follow_device_" + device_id).attr("class", "glyphicon glyphicon-star")
-        $("#follow_device_" + device_id).attr("onclick", "ajax_unfollow('" + device_id + "')")
-      }
-    }});
-  }
-  
-  function ajax_unfollow(device_id) {
-    $.ajax({url: "/unfollow_device/" + device_id, success: function(result){
-      if (result == 'success') {
-        $("#follow_device_" + device_id).attr("class", "glyphicon glyphicon-star-empty")
-        $("#follow_device_" + device_id).attr("onclick", "ajax_follow('" + device_id + "')")
-      }
-    }});
-  }
-</script>
     <h1>{{ _("Devices") }}</h1>
     <table class="table table-striped">
         <thead>
@@ -55,12 +36,37 @@
                 {% if device in current_user.devices -%}
                 	<td><a href="{{ url_for('main.edit_device', device_id=device.id) }}" class="btn btn-info"><span class="fa fa-wrench fa-fw"></span></a></td>
                 	<td><a href="{{ url_for('main.delete_device', device_id=device.id) }}" class="btn btn-danger"><span class="fa fa-trash-alt fa-fw"></span></a></td>
-                {% else %}
+                {%- else -%}
                 	<td></td>
                 	<td></td>
-                {% endif %}
+                {%- endif %}
             </tr>
-        {% endfor %}
+        {%- endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script>
+  function ajax_follow(device_id) {
+    $.ajax({url: "/follow_device/" + device_id, success: function(result){
+      if (result == 'success') {
+        $("#follow_device_" + device_id).attr("class", "glyphicon glyphicon-star")
+        $("#follow_device_" + device_id).attr("onclick", "ajax_unfollow('" + device_id + "')")
+      }
+    }});
+  }
+  
+  function ajax_unfollow(device_id) {
+    $.ajax({url: "/unfollow_device/" + device_id, success: function(result){
+      if (result == 'success') {
+        $("#follow_device_" + device_id).attr("class", "glyphicon glyphicon-star-empty")
+        $("#follow_device_" + device_id).attr("onclick", "ajax_follow('" + device_id + "')")
+      }
+    }});
+  }
+</script>
+
 {% endblock %}
