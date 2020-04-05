@@ -4,6 +4,10 @@
 [![Heroku](https://heroku-badge.herokuapp.com/?app=ogn-ddb)](https://ogn-ddb.herokuapp.com)
 [![codecov](https://codecov.io/gh/Meisterschueler/python-ogn-ddb/branch/master/graph/badge.svg)](https://codecov.io/gh/Meisterschueler/python-ogn-ddb)
 
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Meisterschueler_python-ogn-ddb&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Meisterschueler_python-ogn-ddb)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Meisterschueler_python-ogn-ddb&metric=security_rating)](https://sonarcloud.io/dashboard?id=Meisterschueler_python-ogn-ddb)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Meisterschueler_python-ogn-ddb&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Meisterschueler_python-ogn-ddb)
+
 ## Installation and Setup
 1. Checkout the repository
 
