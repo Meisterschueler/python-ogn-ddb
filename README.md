@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Meisterschueler/python-ogn-ddb.svg?branch=master)](https://travis-ci.org/Meisterschueler/python-ogn-ddb)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=ogn-ddb)](https://ogn-ddb.herokuapp.com)
-[![Coverage Status](https://coveralls.io/repos/github/Meisterschueler/python-ogn-ddb/badge.svg?branch=master)](https://coveralls.io/github/Meisterschueler/python-ogn-ddb?branch=master)
+[![codecov](https://codecov.io/gh/Meisterschueler/python-ogn-ddb/branch/master/graph/badge.svg)](https://codecov.io/gh/Meisterschueler/python-ogn-ddb)
 
 ## Installation and Setup
 1. Checkout the repository

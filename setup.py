@@ -26,7 +26,8 @@ setup(
         'Topic :: Scientific/Engineering :: GIS',
         'License :: OSI Approved :: GNU Affero General Public License v3',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.7'
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     keywords='gliding ogn',
     packages=find_packages(exclude=['tests', 'tests.*']),
@@ -41,6 +42,7 @@ setup(
         'Flask-Mail==0.9.1',
         'Flask-Babel==1.0.0',
         'Flask-WTF==0.14.3',
+        'WTForms-SQLAlchemy==0.1',
         'PyJWT==1.7.1',
     ],
     test_require=[
