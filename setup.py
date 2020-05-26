@@ -34,7 +34,7 @@ setup(
     python_requires='>=3',
     install_requires=[
         'Flask==1.1.1',
-        'Flask-SQLAlchemy==2.4.1',
+        'Flask-SQLAlchemy==2.4.2',
         'Flask-Migrate==2.5.3',
         'Flask-Admin==1.5.5',
         'Flask-Login==0.5.0',
