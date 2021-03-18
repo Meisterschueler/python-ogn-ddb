@@ -40,7 +40,7 @@ setup(
         'Flask-Login==0.5.0',
         'Flask-Bootstrap==3.3.7.1',
         'Flask-Mail==0.9.1',
-        'Flask-Babel==1.0.0',
+        'Flask-Babel==2.0.0',
         'Flask-WTF==0.14.3',
         'email_validator==1.1.2',
         'WTForms-SQLAlchemy==0.2',
