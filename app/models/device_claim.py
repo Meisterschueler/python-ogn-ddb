@@ -35,7 +35,7 @@ class DeviceClaim(db.Model):
     admin = db.relationship("User", foreign_keys=[admin_id], backref=db.backref("claims_ad_admin", order_by=claim_timestamp))
 
     def get_token(self, expires_in=600):
-        return jwt.encode({"device_claim": self.id, "exp": time() + expires_in}, current_app.config["SECRET_KEY"], algorithm="HS256").decode("utf-8")
+        return jwt.encode({"device_claim": self.id, "exp": time() + expires_in}, current_app.config["SECRET_KEY"], algorithm="HS256")
 
     @staticmethod
     def verify_token(token):
