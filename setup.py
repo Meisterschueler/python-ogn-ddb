@@ -44,7 +44,7 @@ setup(
         'Flask-WTF==0.14.3',
         'email_validator==1.1.2',
         'WTForms-SQLAlchemy==0.2',
-        'PyJWT==2.0.1',
+        'PyJWT==2.1.0',
     ],
     test_require=[
         'pytest==5.0.1',
