@@ -33,7 +33,7 @@ setup(
     packages=find_packages(exclude=['tests', 'tests.*']),
     python_requires='>=3',
     install_requires=[
-        'Flask==1.1.2',
+        'Flask==2.0.0',
         'Flask-SQLAlchemy==2.5.1',
         'Flask-Migrate==2.7.0',
         'Flask-Admin==1.5.8',
