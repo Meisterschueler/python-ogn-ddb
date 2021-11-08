@@ -43,7 +43,7 @@ setup(
         'Flask-Babel==2.0.0',
         'Flask-WTF==0.15.1',
         'email_validator==1.1.2',
-        'WTForms-SQLAlchemy==0.2',
+        'WTForms-SQLAlchemy==0.3',
         'PyJWT==2.1.0',
     ],
     test_require=[
