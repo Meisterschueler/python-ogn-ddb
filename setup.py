@@ -42,7 +42,7 @@ setup(
         'Flask-Mail==0.9.1',
         'Flask-Babel==2.0.0',
         'Flask-WTF==0.15.1',
-        'email_validator==1.1.2',
+        'email_validator==1.3.0',
         'WTForms-SQLAlchemy==0.2',
         'PyJWT==2.1.0',
     ],
